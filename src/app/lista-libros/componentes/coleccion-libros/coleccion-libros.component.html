@@ -1,0 +1,4 @@
+<div *ngFor="let libro of libros">
+    <span>{{libro?.volumeInfo?.titulo}} - {{libro?.volumeInfo?.autores}}</span>
+    <button class="btn btn-outline-danger" (click)="remover.emit(libro?.id)">Remover</button>
+</div>

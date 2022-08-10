@@ -1,0 +1,12 @@
+<div class="d-flex flex-wrap">
+    <div class="libro" *ngFor="let libro of libros">
+        <h4><strong>{{libro.volumeInfo.titulo}}</strong></h4>
+        <span> Escrito por: {{libro.volumeInfo.autores}}</span>
+        <button class="btn btn-primary" (click)="agregar.emit(libro.id)">
+            Agregar a coleccion
+        </button>
+    </div>
+</div>
+<button class="btn btn-info mx-2" (click)="mas.emit()">
+    Cargar más libros
+</button>
