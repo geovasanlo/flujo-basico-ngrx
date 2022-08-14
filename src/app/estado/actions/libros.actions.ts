@@ -11,7 +11,12 @@ export const removerLibro = createAction(
     props<{ idLibro: string }>()
 );
 
-export const cargarListaLibros = createAction(
-    '[Lista Libros] Cargar Libros Desde API',
+export const obtenerListaLibros = createAction(
+    '[Lista Libros] Obtener Libros Desde API',
+    props<{ indiceLibro: number, cantidadPagina: number }>()
+);
+
+export const almacenarListaLibros = createAction(
+    '[Lista Libros] Almacenar Libros Store',
     props<{ libros: ReadonlyArray<Libro> }>()
 );

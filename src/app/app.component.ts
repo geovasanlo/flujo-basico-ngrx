@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { agregarLibro, cargarListaLibros, removerLibro } from './estado/actions/libros.actions';
+import { agregarLibro, almacenarListaLibros, obtenerListaLibros, removerLibro } from './estado/actions/libros.actions';
 import { selectColeccionLibros, selectLibros } from './estado/selectors/libros.selectors';
 import { Libro } from './lista-libros/modelos/libros.model';
 import { LibrosService } from './lista-libros/servicios/libros.service';
@@ -18,14 +18,14 @@ export class AppComponent implements OnInit {
   private cantidadPagina = 5;
 
   constructor(
-    private librosService: LibrosService,
     private store: Store
   ) { }
 
   ngOnInit() {
-    this.librosService.obtenerLibros(this.cantidadPagina).subscribe(
-      (libros) => this.store.dispatch(cargarListaLibros({ libros }))
-    );
+    this.store.dispatch(obtenerListaLibros({
+      indiceLibro: this.indiceLibro,
+      cantidadPagina: this.cantidadPagina
+    }));
   }
 
   enAgregar(idLibro: string) {
@@ -38,9 +38,10 @@ export class AppComponent implements OnInit {
 
   cargarMas() {
     this.indiceLibro = this.indiceLibro + this.cantidadPagina;
-    this.librosService.obtenerLibros(this.cantidadPagina, this.indiceLibro).subscribe(
-      (libros) => this.store.dispatch(cargarListaLibros({ libros }))
-    );
+    this.store.dispatch(obtenerListaLibros({
+      indiceLibro: this.indiceLibro,
+      cantidadPagina: this.cantidadPagina
+    }));
   }
 
 }

@@ -9,6 +9,8 @@ import { ListaLibrosComponent } from './lista-libros/componentes/lista-libros/li
 import { ColeccionLibrosComponent } from './lista-libros/componentes/coleccion-libros/coleccion-libros.component';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { LibrosEffects } from './estado/efectos/libros.effects';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
       maxAge: 10,
       autoPause: true,
     }),
-    UsuariosModule
+    UsuariosModule,
+    EffectsModule.forRoot([
+      LibrosEffects
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
